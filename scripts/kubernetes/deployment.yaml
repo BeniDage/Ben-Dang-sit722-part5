@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: book-catalog
-          image: bendangpart4flixtube.azurecr.io/book_catalog:latest
+          image: ${CONTAINER_REGISTRY}/book_catalog:${VERSION}
           ports:
             - containerPort: 80
           env:
@@ -38,7 +38,7 @@ spec:
     spec:
       containers:
         - name: inventory-management
-          image: bendangpart4flixtube.azurecr.io/inventory_management:latest
+          image: ${CONTAINER_REGISTRY}/inventory_management:${VERSION}
           ports:
             - containerPort: 80
           env:
