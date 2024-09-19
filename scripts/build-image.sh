@@ -17,3 +17,7 @@ set -u # or set -o nounset
 
 docker build -t $CONTAINER_REGISTRY/inventory_management:$VERSION --file ./inventory_management/Dockerfile .
 docker build -t $CONTAINER_REGISTRY/book_catalog:$VERSION --file ./book_catalog/Dockerfile .
+
+# Tag the images with 'latest'
+docker tag $CONTAINER_REGISTRY/inventory_management:$VERSION $CONTAINER_REGISTRY/inventory_management:latest
+docker tag $CONTAINER_REGISTRY/book_catalog:$VERSION $CONTAINER_REGISTRY/book_catalog:latest
