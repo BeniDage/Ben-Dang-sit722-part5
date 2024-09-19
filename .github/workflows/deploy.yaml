@@ -25,6 +25,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
       VERSION: ${{ github.sha }}
       CONTAINER_REGISTRY: ${{ secrets.CONTAINER_REGISTRY }}
       REGISTRY_UN: ${{ secrets.REGISTRY_UN }}
