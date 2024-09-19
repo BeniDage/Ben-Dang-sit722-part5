@@ -55,6 +55,12 @@ jobs:
         run: pipenv install --deploy --ignore-pipfile
 
       #
+      # Make all scripts in the scripts directory executable.
+      #
+      - name: Make scripts executable
+        run: chmod +x ./scripts/*.sh
+
+      #
       # Builds the Docker image.
       #
       - name: Build
