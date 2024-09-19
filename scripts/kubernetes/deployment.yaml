@@ -19,7 +19,7 @@ spec:
             - containerPort: 80
           env:
             - name: DATABASE_URL
-              value: "postgresql://benpostgresql_uyir_user:BTtPYaTuwoQgjUo1FQap4zzypwfCDPfP@dpg-crhpe4rv2p9s73be21j0-a.oregon-postgres.render.com/benpostgresql_uyir"
+              value: $DATABASE_URL
 
 ---
 apiVersion: apps/v1
@@ -43,7 +43,7 @@ spec:
             - containerPort: 80
           env:
             - name: DATABASE_URL
-              value: "postgresql://benpostgresql_uyir_user:BTtPYaTuwoQgjUo1FQap4zzypwfCDPfP@dpg-crhpe4rv2p9s73be21j0-a.oregon-postgres.render.com/benpostgresql_uyir"
+              value: $DATABASE_URL
 
 ---
 apiVersion: v1
