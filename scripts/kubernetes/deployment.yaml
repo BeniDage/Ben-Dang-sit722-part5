@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: book-catalog
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: book-catalog
+  template:
+    metadata:
+      labels:
+        app: book-catalog
+    spec:
+      containers:
+        - name: book-catalog
+          image: bendangpart4flixtube.azurecr.io/ben-dang-sit722-part5-book_catalog:latest
+          ports:
+            - containerPort: 80
+          env:
+            - name: DATABASE_URL
+              value: "postgresql://benpostgresql_uyir_user:BTtPYaTuwoQgjUo1FQap4zzypwfCDPfP@dpg-crhpe4rv2p9s73be21j0-a.oregon-postgres.render.com/benpostgresql_uyir"
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inventory-management
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: inventory-management
+  template:
+    metadata:
+      labels:
+        app: inventory-management
+    spec:
+      containers:
+        - name: inventory-management
+          image: bendangpart4flixtube.azurecr.io/ben-dang-sit722-part5-inventory_management:latest
+          ports:
+            - containerPort: 80
+          env:
+            - name: DATABASE_URL
+              value: "postgresql://benpostgresql_uyir_user:BTtPYaTuwoQgjUo1FQap4zzypwfCDPfP@dpg-crhpe4rv2p9s73be21j0-a.oregon-postgres.render.com/benpostgresql_uyir"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: book-catalog-service
+spec:
+  selector:
+    app: book-catalog
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: inventory-management-service
+spec:
+  selector:
+    app: inventory-management
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer
